@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 
+import static baseballgame.Constants.*;
+
 public class BaseballGame {
 
     private static final BaseballGame game = new BaseballGame();
@@ -15,17 +17,17 @@ public class BaseballGame {
         do {
             game.play();
             resultView.finishRound();
-        } while (!inputView.selectMenu().equals("FINISH"));
+        } while (!inputView.selectMenu().equals(FINISH_GAME));
     }
 
     /**
      * 한 라운드의 게임을 진행한다.
      */
     public void play() throws IOException {
-        String targetNum = this.getRandomNumber(3);
+        String targetNum = this.getRandomNumber(DIGIT_COUNT);
         int[] counts = new int[]{0, 0};
 
-        while (counts[0] < 3) {
+        while (counts[0] < DIGIT_COUNT) {
             String inputNum = inputView.inputNumber();
             counts = this.compare(targetNum, inputNum);
             String result = this.getCountResult(counts[0], counts[1]);
@@ -39,7 +41,7 @@ public class BaseballGame {
     public String getRandomNumber(int n) {
         StringBuffer randomNumber = new StringBuffer();
 
-        while (randomNumber.length() < 3) {
+        while (randomNumber.length() < DIGIT_COUNT) {
             int digit = getRandomDigit(10);
             addDigit(randomNumber, digit);
         }
@@ -54,7 +56,7 @@ public class BaseballGame {
     public int[] compare(String targetNum, String inputNum) {
         String[] result = {"", "", ""};
 
-        for (int idx = 0; idx < 3; idx++) {
+        for (int idx = 0; idx < DIGIT_COUNT; idx++) {
             String s = compareDigit(targetNum, idx, inputNum.substring(idx, idx + 1));
             result[idx] = s;
         }

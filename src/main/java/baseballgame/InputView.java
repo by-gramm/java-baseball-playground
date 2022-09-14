@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.InputMismatchException;
 
+import static baseballgame.Constants.*;
+
 public class InputView {
 
     public String inputNumber() throws IOException {
@@ -28,15 +30,11 @@ public class InputView {
         String menu = "";
 
         // 유효한 입력값이 들어올 때까지 입력을 받는다.
-        while (!(menu.equals("1") || menu.equals("2"))) {
+        while (!(menu.equals(NEW_GAME) || menu.equals(FINISH_GAME))) {
             menu = reader.readLine();
         }
 
-        if (menu.equals("1")) {
-            return "NEWGAME";
-        }
-
-        return "FINISH";
+        return menu;
     }
 
     private boolean isAllDigit(String numStr) {
@@ -46,10 +44,7 @@ public class InputView {
         if (!Character.isDigit(numStr.charAt(1))) {   // 2번째 문자가 숫자가 아닌 경우
             return false;
         }
-        if (!Character.isDigit(numStr.charAt(2))) {   // 3번째 문자가 숫자가 아닌 경우
-            return false;
-        }
 
-        return true;
+        return Character.isDigit(numStr.charAt(2));   // 3번째 문자가 숫자면 true, 아니면 false
     }
 }

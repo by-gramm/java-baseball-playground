@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import static baseballgame.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BaseballGameTest {
@@ -20,9 +21,9 @@ class BaseballGameTest {
     @Test
     @DisplayName("서로 다른 3자리 숫자로 이루어진 수 만들기")
     void getRandomNumber() {
-        String randomNumber = game.getRandomNumber(3);
+        String randomNumber = game.getRandomNumber(DIGIT_COUNT);
         // 자리수 확인
-        assertEquals(randomNumber.length(), 3);
+        assertEquals(randomNumber.length(), DIGIT_COUNT);
 
         // 숫자가 모두 다른지 확인
         assertNotEquals(randomNumber.charAt(0), randomNumber.charAt(1));
