@@ -3,6 +3,8 @@ package baseballgame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,26 +30,20 @@ class BaseballGameTest {
         assertNotEquals(randomNumber.charAt(1), randomNumber.charAt(2));
     }
 
-    @Test
-    @DisplayName("스트라이크/볼 테스트")
-    void strikeAndBallCount() {
-        int[] result1 = game.compare("567", "557");
-        int[] result2 = game.compare("015", "234");
-
-        assertTrue(result1[0] == 2);
-        assertTrue(result1[1] == 1);
-
-        assertTrue(result2[0] == 0);
-        assertTrue(result2[1] == 0);
+    @ParameterizedTest
+    @DisplayName("스트라이크/볼 카운트 테스트")
+    @CsvSource(value = {"567:557:2:1", "015:234:0:0", "468:684:0:3"}, delimiter = ':')
+    void strikeAndBallCount(String targetNum, String inputNum, int sCount, int bCount) {
+        int[] result = game.compare(targetNum, inputNum);
+        assertEquals(result[0], sCount);
+        assertEquals(result[1], bCount);
     }
 
-    @Test
+    @ParameterizedTest
     @DisplayName("스트라이크/볼 카운트 결과 나타내기")
-    void getCountResult() {
-        assertEquals(game.getCountResult(0, 0), "낫싱");
-        assertEquals(game.getCountResult(1, 0), "1스트라이크");
-        assertEquals(game.getCountResult(0, 2), "2볼");
-        assertEquals(game.getCountResult(2, 1), "1볼 2스트라이크");
+    @CsvSource(value = {"0:0:낫싱", "1:0:1스트라이크", "0:2:2볼", "2:1:1볼 2스트라이크"}, delimiter = ':')
+    void getCountResult(int strikeCount, int ballCount, String result) {
+        assertEquals(game.getCountResult(strikeCount, ballCount), result);
     }
 
 }
