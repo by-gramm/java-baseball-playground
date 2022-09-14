@@ -6,19 +6,31 @@ import java.util.Collections;
 
 public class BaseballGame {
 
-    public static void main(String[] args) throws IOException {
-        BaseballGame game = new BaseballGame();
-        String targetNum = game.getRandomNumber(3);
+    private static final BaseballGame game = new BaseballGame();
+    private static final InputView inputView = new InputView();
+    private static final ResultView resultView = new ResultView();
 
-        InputView inputView = new InputView();
+
+    public static void main(String[] args) throws IOException {
+        do {
+            game.play();
+            resultView.finishRound();
+        } while (!inputView.selectMenu().equals("FINISH"));
+    }
+
+    /**
+     * 한 라운드의 게임을 진행한다.
+     */
+    public void play() throws IOException {
+        String targetNum = this.getRandomNumber(3);
         int[] counts = new int[]{0, 0};
 
         while (counts[0] < 3) {
             String inputNum = inputView.inputNumber();
-            counts = game.compare(targetNum, inputNum);
-            String result = game.getCountResult(counts[0], counts[1]);
+            counts = this.compare(targetNum, inputNum);
+            String result = this.getCountResult(counts[0], counts[1]);
+            resultView.showCountResult(result);
         }
-
     }
 
     /**

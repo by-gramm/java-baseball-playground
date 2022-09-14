@@ -23,6 +23,22 @@ public class InputView {
         return inputNum;
     }
 
+    public String selectMenu() throws IOException, InputMismatchException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String menu = "";
+
+        // 유효한 입력값이 들어올 때까지 입력을 받는다.
+        while (!(menu.equals("1") || menu.equals("2"))) {
+            menu = reader.readLine();
+        }
+
+        if (menu.equals("1")) {
+            return "NEWGAME";
+        }
+
+        return "FINISH";
+    }
+
     private boolean isAllDigit(String numStr) {
         if (!Character.isDigit(numStr.charAt(0))) {   // 1번째 문자가 숫자가 아닌 경우
             return false;
