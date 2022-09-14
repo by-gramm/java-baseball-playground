@@ -18,7 +18,7 @@ class BaseballGameTest {
     @Test
     @DisplayName("서로 다른 3자리 숫자로 이루어진 수 만들기")
     void getRandomNumber() {
-        StringBuffer randomNumber = game.getRandomNumber(3);
+        String randomNumber = game.getRandomNumber(3);
         // 자리수 확인
         assertEquals(randomNumber.length(), 3);
 
@@ -27,4 +27,27 @@ class BaseballGameTest {
         assertNotEquals(randomNumber.charAt(0), randomNumber.charAt(2));
         assertNotEquals(randomNumber.charAt(1), randomNumber.charAt(2));
     }
+
+    @Test
+    @DisplayName("스트라이크/볼 테스트")
+    void strikeAndBallCount() {
+        int[] result1 = game.compare("567", "557");
+        int[] result2 = game.compare("015", "234");
+
+        assertTrue(result1[0] == 2);
+        assertTrue(result1[1] == 1);
+
+        assertTrue(result2[0] == 0);
+        assertTrue(result2[1] == 0);
+    }
+
+    @Test
+    @DisplayName("스트라이크/볼 카운트 결과 나타내기")
+    void getCountResult() {
+        assertEquals(game.getCountResult(0, 0), "낫싱");
+        assertEquals(game.getCountResult(1, 0), "1스트라이크");
+        assertEquals(game.getCountResult(0, 2), "2볼");
+        assertEquals(game.getCountResult(2, 1), "1볼 2스트라이크");
+    }
+
 }
