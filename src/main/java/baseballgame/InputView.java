@@ -23,7 +23,7 @@ public class InputView {
         return inputNum;
     }
 
-    public boolean isAllDigit(String numStr) {
+    private boolean isAllDigit(String numStr) {
         if (!Character.isDigit(numStr.charAt(0))) {   // 1번째 문자가 숫자가 아닌 경우
             return false;
         }
