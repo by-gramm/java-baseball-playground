@@ -2,6 +2,7 @@ package baseballgame;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static baseballgame.BallStatus.*;
@@ -51,5 +52,19 @@ public class Balls {
         return ballList.stream()
                 .map(userBalls::compare)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Balls balls = (Balls) o;
+
+        return compareAll(balls).equals(new GameResult(3, 0));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ballList);
     }
 }

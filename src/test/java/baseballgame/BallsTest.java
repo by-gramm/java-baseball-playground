@@ -73,5 +73,12 @@ public class BallsTest {
             Balls userBalls = new Balls(Arrays.asList(5, 3, 8));
             assertEquals(comBalls.compareAll(userBalls), new GameResult(3, 0));
         }
+
+        @Test
+        @DisplayName("두 Balls가 같은지 비교")
+        void equals() {
+            Balls userBalls = new Balls(Arrays.asList(5, 3, 8));
+            assertTrue(comBalls.equals(userBalls));
+        }
     }
 }
