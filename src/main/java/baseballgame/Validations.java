@@ -1,9 +1,7 @@
 package baseballgame;
 
-
 public class Validations {
 
-    public static final int BALL_COUNT = 3;
     private static final String NUMERIC_REGEX = "[0-9]+";
 
     public static boolean isNumeric(String number) {
@@ -19,6 +17,6 @@ public class Validations {
             return false;
         }
 
-        return (number.length() == BALL_COUNT);
+        return (number.length() == Constants.BALL_COUNT);
     }
 }
