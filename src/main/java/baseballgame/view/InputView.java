@@ -11,14 +11,12 @@ public class InputView {
     private static final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
     public String inputNumber() throws IOException {
-        boolean isInputValid = false;
         String userInput = "";
 
-        while (!isInputValid) {
+        do {
             System.out.print("3개의 숫자를 입력해 주세요 : ");
             userInput = reader.readLine();
-            isInputValid = checkInput(userInput);
-        }
+        } while (!checkInput(userInput));
 
         return userInput;
     }

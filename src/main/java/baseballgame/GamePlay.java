@@ -15,12 +15,13 @@ public class GamePlay {
     public void play() throws IOException {
         Balls comBalls = setRandomBalls();
         Balls userBalls = null;
+        GameResult gameResult = null;
 
         do {
             userBalls = setUserBalls();
-            GameResult gameResult = comBalls.compareAll(userBalls);
+            gameResult = comBalls.compareAll(userBalls);
             System.out.println(gameResult);
-        } while (!comBalls.equals(userBalls));
+        } while (!gameResult.isFinished());
     }
 
     private Balls setUserBalls() throws IOException {
