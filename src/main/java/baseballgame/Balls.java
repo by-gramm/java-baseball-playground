@@ -8,13 +8,7 @@ import static baseballgame.BallStatus.*;
 
 public class Balls {
 
-    private final List<Ball> ballList = new ArrayList<Ball>();
-
-//    public Balls(int num1, int num2, int num3) {
-//        ballList.add(new Ball(0, num1));
-//        ballList.add(new Ball(1, num2));
-//        ballList.add(new Ball(2, num3));
-//    }
+    private final List<Ball> ballList = new ArrayList<>();
 
     public Balls(List<Integer> numbers) {
         for (int idx = 0; idx < Constants.BALL_COUNT; idx++) {
