@@ -41,4 +41,8 @@ public class GameResult {
 
         return String.format("%d볼 %d스트라이크", ballCount, strikeCount);
     }
+
+    public boolean isFinished() {
+        return (strikeCount == Constants.BALL_COUNT);
+    }
 }

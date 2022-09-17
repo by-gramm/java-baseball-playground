@@ -1,10 +1,14 @@
 package baseballgame;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GameResultTest {
 
@@ -14,5 +18,15 @@ public class GameResultTest {
     void result_to_string(int strikeCount, int ballCount, String stringResult) {
         GameResult result = new GameResult(strikeCount, ballCount);
         assertEquals(result.toString(), stringResult);
+    }
+
+    @Test
+    @DisplayName("게임 종료 조건 확인 검증")
+    void finish_game() {
+        GameResult result1 = new GameResult(3, 0);
+        GameResult result2 = new GameResult(2, 1);
+
+        assertTrue(result1.isFinished());
+        assertFalse(result2.isFinished());
     }
 }
