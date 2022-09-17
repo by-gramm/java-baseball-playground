@@ -19,4 +19,8 @@ public class Validations {
 
         return (number.length() == Constants.BALL_COUNT);
     }
+
+    public static boolean isValidMenu(String menuInput) {
+        return (Constants.RESTART_GAME.equals(menuInput) || Constants.END_GAME.equals(menuInput));
+    }
 }
