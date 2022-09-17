@@ -12,7 +12,7 @@ public class GamePlay {
 
     private final InputView inputView = new InputView();
 
-    public void startGame() throws IOException {
+    public void play() throws IOException {
         Balls comBalls = setRandomBalls();
         Balls userBalls = null;
 

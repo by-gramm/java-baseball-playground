@@ -15,7 +15,7 @@ public class InputView {
         String userInput = "";
 
         while (!isInputValid) {
-            System.out.print("숫자를 입력해 주세요 : ");
+            System.out.print("3개의 숫자를 입력해 주세요 : ");
             userInput = reader.readLine();
             isInputValid = checkInput(userInput);
         }
@@ -35,6 +35,17 @@ public class InputView {
         }
 
         return true;
+    }
+
+    public static String inputMenu() throws IOException {
+        String menuInput = "";
+
+        while (!Validations.isValidMenu(menuInput)) {
+            ResultView.showMenu();
+            menuInput = reader.readLine();
+        }
+
+        return menuInput;
     }
 
 }
