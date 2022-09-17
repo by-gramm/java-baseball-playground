@@ -38,13 +38,16 @@ public class GamePlay {
 
         while (numbers.size() < Constants.BALL_COUNT) {
             int newNumber = getRandomNumber();
-
-            if (!numbers.contains(newNumber)) {
-                numbers.add(newNumber);
-            }
+            addUniqueNumber(numbers, newNumber);
         }
 
         return new Balls(numbers);
+    }
+
+    private static void addUniqueNumber(ArrayList<Integer> numbers, int newNumber) {
+        if (!numbers.contains(newNumber)) {
+            numbers.add(newNumber);
+        }
     }
 
     private static int getRandomNumber() {
